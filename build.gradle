@@ -36,6 +36,9 @@ dependencies {
 	// https://mvnrepository.com/artifact/io.springfox/springfox-swagger-ui
 	implementation group: 'io.springfox', name: 'springfox-swagger-ui', version: '3.0.0'
 
+	// https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-security
+	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-security', version: '3.1.5'
+
 
 
 }
