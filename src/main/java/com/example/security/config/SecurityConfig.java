@@ -1,6 +1,6 @@
 package com.example.security.config;
 
-import org.springframework.context.annotation.Bean;
+/**import org.springframework.context.annotation.Bean;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.ProviderManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -16,43 +16,42 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.*;
 import org.springframework.security.config.annotation.authentication.builders.*;
 import org.springframework.security.config.annotation.web.configuration.*;
+import org.springframework.security.web.servlet.util.matcher.MvcRequestMatcher;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+import org.springframework.util.AntPathMatcher;
+import org.springframework.web.servlet.handler.HandlerMappingIntrospector;
 
 import static org.springframework.security.config.Customizer.withDefaults;
+import static org.springframework.security.web.util.matcher.AntPathRequestMatcher.antMatcher;
+
 
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
 
-    @Bean
-    public UserDetailsService userDetailsService() throws Exception {
-        // ensure the passwords are encoded properly
-        User.UserBuilder users = User.withDefaultPasswordEncoder();
-        InMemoryUserDetailsManager manager = new InMemoryUserDetailsManager();
-        manager.createUser(users.username("user").password("password").roles("USER").build());
-        manager.createUser(users.username("admin").password("password").roles("USER","ADMIN").build());
-        return manager;
-    }
+
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
-        http.authorizeHttpRequests(
-                auth -> auth.requestMatchers("/api/**")
-                        .permitAll().anyRequest().authenticated());
 
-        http.httpBasic(withDefaults());
+                http.csrf().disable()
+                .authorizeHttpRequests().requestMatchers(AntPathRequestMatcher.antMatcher("/*"))
 
-        http.csrf().disable();
+                .authenticated();
+
+                http.formLogin()
+                .and()
+                .logout().invalidateHttpSession(true)
+                .clearAuthentication(true)
+                .logoutSuccessUrl("/index.html");
 
         return http.build();
+
+
     }
 
-    @Bean
-    public AuthenticationManager authenticationManager(UserDetailsService userDetailsService) {
-        var authenticationProvider = new DaoAuthenticationProvider();
-        authenticationProvider.setUserDetailsService(userDetailsService);
 
-        return new ProviderManager(authenticationProvider);
-    }
 
-}
+
+}**/

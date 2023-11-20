@@ -35,6 +35,8 @@ public class SakilaController {
     @Autowired
     private CategoryService categoryService;
 
+
+
     @GetMapping("/allcustomers")
     public ResponseEntity<?> getCustomers(){
         Map<String, Object> map = new LinkedHashMap<String, Object>();
