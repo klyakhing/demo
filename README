@@ -1,5 +1,5 @@
 1. You need MySQL installed on your computer.
-2. mysql -u root -p < NortheindUpdated.sql (it will create and populate MySQL db on your computer)
+2. mysql -u root -p < NorthwindUpdated.sql (it will create and populate MySQL db on your computer)
 3. ./gradlew bootRun
 
 Then you can test with Postman or Swagger.
@@ -7,4 +7,4 @@ Swagger link - http://localhost:8080/swagger-ui/index.html.
 
 Http basic auth
 1. http://localhost:8080
-2. login: user, password: password (see SecurityConfig.java)
+2. login: user, password: user (see application.properties)
